@@ -1,0 +1,27 @@
+# Build outputs
+/bin/
+/obj/
+
+# VS and Rider
+.vs/
+.idea/
+
+# User-specific
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# .NET Core tooling
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Test Results
+TestResults/
+
+# Bicep output (if any)
+/*.json  # adjust if you output ARM JSON locally
+
+# Others you might add:
+*.log
