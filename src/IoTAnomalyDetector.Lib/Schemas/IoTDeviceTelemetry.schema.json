@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IoTDeviceTelemetry",
+  "description": "Schema for a single telemetry message sent from an IoT device.",
+  "type": "object",
+  "required": [ "deviceId", "timestamp", "telemetry" ],
+  "properties": {
+    "deviceId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the IoT device."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC ISO timestamp when the reading was taken."
+    },
+    "telemetry": {
+      "type": "object",
+      "description": "Sensor readings as key:number pairs.",
+      "minProperties": 1,
+      "additionalProperties": { "type": "number" }
+    },
+    "properties": {
+      "type": "object",
+      "description": "Optional metadata as key:string pairs.",
+      "additionalProperties": { "type": "string" }
+    }
+  },
+  "example": {
+    "deviceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "timestamp": "2025-07-06T15:30:00Z",
+    "telemetry": {
+      "temperature": 23.5,
+      "humidity": 68.2
+    },
+    "properties": { "location": "Factory-Floor-1" }
+  }
+}
