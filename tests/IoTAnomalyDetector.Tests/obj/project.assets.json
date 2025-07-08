@@ -1708,6 +1708,16 @@
         "build": {
           "build/net6.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "IoTAnomalyDetector.Lib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/IoTAnomalyDetector.Lib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/IoTAnomalyDetector.Lib.dll": {}
+        }
       }
     }
   },
@@ -5497,10 +5507,16 @@
         "xunit.runner.visualstudio.2.5.3.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "IoTAnomalyDetector.Lib/1.0.0": {
+      "type": "project",
+      "path": "../../src/IoTAnomalyDetector.Lib/IoTAnomalyDetector.Lib.csproj",
+      "msbuildProject": "../../src/IoTAnomalyDetector.Lib/IoTAnomalyDetector.Lib.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "IoTAnomalyDetector.Lib >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.8.0",
       "coverlet.collector >= 6.0.0",
       "xunit >= 2.5.3",
@@ -5508,19 +5524,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Usman\\.nuget\\packages\\": {}
+    "C:\\Users\\ujaved\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usman\\Source\\Repos\\ujavedodl\\IoT-Anomaly-Detection\\tests\\IoTAnomalyDetector.Tests\\IoTAnomalyDetector.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\ujaved\\Source\\Repos\\IoT-Anomaly-Detection\\tests\\IoTAnomalyDetector.Tests\\IoTAnomalyDetector.Tests.csproj",
       "projectName": "IoTAnomalyDetector.Tests",
-      "projectPath": "C:\\Users\\Usman\\Source\\Repos\\ujavedodl\\IoT-Anomaly-Detection\\tests\\IoTAnomalyDetector.Tests\\IoTAnomalyDetector.Tests.csproj",
-      "packagesPath": "C:\\Users\\Usman\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usman\\Source\\Repos\\ujavedodl\\IoT-Anomaly-Detection\\tests\\IoTAnomalyDetector.Tests\\obj\\",
+      "projectPath": "C:\\Users\\ujaved\\Source\\Repos\\IoT-Anomaly-Detection\\tests\\IoTAnomalyDetector.Tests\\IoTAnomalyDetector.Tests.csproj",
+      "packagesPath": "C:\\Users\\ujaved\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ujaved\\Source\\Repos\\IoT-Anomaly-Detection\\tests\\IoTAnomalyDetector.Tests\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Usman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ujaved\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5533,7 +5554,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ujaved\\Source\\Repos\\IoT-Anomaly-Detection\\src\\IoTAnomalyDetector.Lib\\IoTAnomalyDetector.Lib.csproj": {
+              "projectPath": "C:\\Users\\ujaved\\Source\\Repos\\IoT-Anomaly-Detection\\src\\IoTAnomalyDetector.Lib\\IoTAnomalyDetector.Lib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -5545,7 +5570,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -5584,7 +5610,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kBUpJxzoh8OXo8Jsi63URUDFVRhZvAJKnUidmnP3LgdTLIygBIRMtUzaFp+M1/D2D/g3ENePQMCrWjMUYcSxZw==",
+  "dgSpecHash": "83QR98ctdmM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usman\\Source\\Repos\\ujavedodl\\IoT-Anomaly-Detection\\src\\IoTAnomalyDetector.Lib\\IoTAnomalyDetector.Lib.csproj",
+  "projectFilePath": "C:\\Users\\ujaved\\Source\\Repos\\IoT-Anomaly-Detection\\src\\IoTAnomalyDetector.Lib\\IoTAnomalyDetector.Lib.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

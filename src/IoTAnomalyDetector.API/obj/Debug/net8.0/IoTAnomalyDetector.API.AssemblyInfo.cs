@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IoTAnomalyDetector.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6da0648f317cacefcfdfba7b1337ed6850177a69")]
 [assembly: System.Reflection.AssemblyProductAttribute("IoTAnomalyDetector.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IoTAnomalyDetector.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
