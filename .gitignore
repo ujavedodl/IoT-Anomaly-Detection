@@ -1,29 +1,19 @@
-# Build outputs
+# Ignore build outputs
 **/bin/
 **/obj/
 
-# VS workspace & user files
+# Ignore Visual Studio workspace
 .vs/
-*.user
-*.suo
 
 # Test results
 **/TestResults/
-*.trx
 
 # Rider
 .idea/
 
-# NuGet packages
-*.nupkg
-packages/
+# User-specifics
+*.user
+*.suo
 
 # Logs
 *.log
-
-# Bicep / ARM artifacts
-**/*.json
-
-# Node (if you ever add a frontend)
-node_modules/
-dist/
