@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infra", "infra", "{BF994F6A
 		iotHub.bicep = iotHub.bicep
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTAnomalyDetector.Simulator", "src\IoTAnomalyDetector.Simulator\IoTAnomalyDetector.Simulator.csproj", "{B28C4D62-4DAC-4255-96BB-C7453B0C4D58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{28060419-E846-43CF-8043-BB531E400BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28060419-E846-43CF-8043-BB531E400BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28060419-E846-43CF-8043-BB531E400BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B28C4D62-4DAC-4255-96BB-C7453B0C4D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B28C4D62-4DAC-4255-96BB-C7453B0C4D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28C4D62-4DAC-4255-96BB-C7453B0C4D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B28C4D62-4DAC-4255-96BB-C7453B0C4D58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,5 +55,6 @@ Global
 		{79BA5385-4FDF-4F14-B99F-076ED4B793BB} = {3C0E5B52-765B-4506-A23D-B1806141BED7}
 		{0E93E52B-FDAF-4CA5-974C-3BF9F01947C1} = {3C0E5B52-765B-4506-A23D-B1806141BED7}
 		{28060419-E846-43CF-8043-BB531E400BA0} = {EB87EA2E-CC6B-4A8A-8149-082033C884CB}
+		{B28C4D62-4DAC-4255-96BB-C7453B0C4D58} = {3C0E5B52-765B-4506-A23D-B1806141BED7}
 	EndGlobalSection
 EndGlobal
