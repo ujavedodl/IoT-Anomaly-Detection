@@ -1,51 +1,34 @@
-﻿using Microsoft.Azure.Devices.Client;
-using System.Text.Json;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
 
-class Program
+namespace IoTAnomalyDetector.Simulator
 {
-    static async Task Main(string[] args)
+    class Program
     {
-        var config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false)
-            .Build();
-
-        string deviceConnectionString = config["DeviceConnectionString"] ?? throw new Exception("DeviceConnectionString missing");
-        int batchSize = int.TryParse(config["BatchSize"], out var b) ? b : 10;
-        int batchDelayMs = int.TryParse(config["BatchDelayMs"], out var d) ? d : 1000;
-        int maxRetries = int.TryParse(config["MaxRetries"], out var r) ? r : 3;
-
-        var deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, TransportType.Mqtt);
-        var generator = new TelemetryGenerator();
-
-        while (true)
+        static async Task Main(string[] args)
         {
-            var batch = generator.GenerateBatch(batchSize);
-            foreach (var telemetry in batch)
+            // load connection string from appsettings.json
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false)
+                .Build();
+
+            var cs = config["IoTHub:ConnectionString"];
+            if (string.IsNullOrEmpty(cs))
             {
-                string json = JsonSerializer.Serialize(telemetry);
-                int attempt = 0;
-                bool sent = false;
-                while (!sent && attempt < maxRetries)
-                {
-                    try
-                    {
-                        using var msg = new Message(System.Text.Encoding.UTF8.GetBytes(json));
-                        await deviceClient.SendEventAsync(msg);
-                        sent = true;
-                    }
-                    catch (Exception ex)
-                    {
-                        attempt++;
-                        if (attempt >= maxRetries) Console.WriteLine($"Failed to send: {ex.Message}");
-                        else await Task.Delay(500 * attempt);
-                    }
-                }
+                Console.Error.WriteLine("ERROR: IoTHub:ConnectionString missing in appsettings.json");
+                return;
             }
-            await Task.Delay(batchDelayMs);
+
+            var generator = new TelemetryGenerator(cs);
+            var deviceId = Guid.Parse(config["IoTHub:DeviceId"] ?? Guid.NewGuid().ToString());
+
+            Console.WriteLine($"Simulating device {deviceId}...");
+            while (true)
+            {
+                await generator.SendRandomAsync(deviceId);
+                await Task.Delay(TimeSpan.FromSeconds(5));
+            }
         }
     }
 }

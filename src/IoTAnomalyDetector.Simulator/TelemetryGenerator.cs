@@ -1,29 +1,70 @@
-using System;
-using System.Collections.Generic;
+using Microsoft.Azure.Devices.Client;
+using System.Text.Json;
 
-public class TelemetryGenerator
+
+namespace IoTAnomalyDetector.Simulator
 {
-    private readonly Random _rand = new();
-    private readonly string[] _sensors = new[] { "temperature", "humidity", "pressure" };
-    public object GenerateTelemetry()
+    public class TelemetryGenerator
     {
-        var telemetry = new Dictionary<string, double>();
-        foreach (var sensor in _sensors)
+        private readonly DeviceClient _client;
+        private readonly JsonSerializerOptions _jsonOptions = new()
         {
-            telemetry[sensor] = Math.Round(_rand.NextDouble() * 100, 2);
-        }
-        return new
-        {
-            deviceId = Guid.NewGuid().ToString(),
-            timestamp = DateTime.UtcNow.ToString("o"),
-            telemetry,
-            properties = new Dictionary<string, string> { { "location", "Factory-Floor-1" } }
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
+
+        public TelemetryGenerator(string connectionString)
+        {
+            _client = DeviceClient.CreateFromConnectionString(connectionString, TransportType.Mqtt);
+        }
+
+        public async Task SendRandomAsync(Guid deviceId)
+        {
+            var payload = new IoTDeviceTelemetry
+            {
+                DeviceId = deviceId,
+                Timestamp = DateTime.UtcNow,
+                Telemetry = new Dictionary<string, double>
+                {
+                    ["temperature"] = Random.Shared.NextDouble() * 40,
+                    ["humidity"] = Random.Shared.NextDouble() * 100
+                }
+            };
+
+            string json = JsonSerializer.Serialize(payload, _jsonOptions);
+            using var message = new Message(System.Text.Encoding.UTF8.GetBytes(json))
+            {
+                ContentType = "application/json",
+                ContentEncoding = "utf-8"
+            };
+
+            // simple retry loop
+            int retries = 3;
+            while (true)
+            {
+                try
+                {
+                    await _client.SendEventAsync(message);
+                    Console.WriteLine($"Sent: {json}");
+                    break;
+                }
+                catch (Exception ex) when (retries-- > 0)
+                {
+                    Console.WriteLine($"Send failed ({ex.Message}), retrying...");
+                    await Task.Delay(1000);
+                }
+            }
+        }
+
+        // Mirror your JSON schema as a C# record
+        public class IoTDeviceTelemetry
+        {
+            public Guid DeviceId { get; set; }
+            public DateTime Timestamp { get; set; }
+            public IDictionary<string, double> Telemetry { get; set; } = new Dictionary<string, double>();
+            public IDictionary<string, string>? Properties { get; set; }
+        }
+
     }
-    public List<object> GenerateBatch(int count)
-    {
-        var batch = new List<object>();
-        for (int i = 0; i < count; i++) batch.Add(GenerateTelemetry());
-        return batch;
-    }
-} 
+
+
+}
